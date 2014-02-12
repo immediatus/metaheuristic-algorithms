@@ -8,9 +8,10 @@ object geneticModule {
   }
 
   def oneMax(in : String): Double  = { // sqrt function
-    val value = 4.0
+    val value = 16.0
     val r = atod(in)
-    Math.abs(1 / (value - (r * r)))
+    val delta = value - (r * r)
+    if(delta == 0) Double.MaxValue else Math.abs(1 / delta)
   }
 
   def random(bits : Int): String = {
@@ -65,10 +66,6 @@ object geneticModule {
       if(gen == 0) best
       else {
         val next = reproduce(tournament(population), crs, mtt).sortBy { oneMax(_) }.take(popSize)
-
-      println(next.map { atod(_) })
-      readLine
-
         val max = (next.head :: best :: Nil).maxBy { oneMax(_) }
         search0(gen - 1, next, max)
       }
