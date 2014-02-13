@@ -9,14 +9,19 @@ Metaheuristic algorithms on Scala
 ####[Evolutionary Algorithms](http://github.com/immediatus/metaheuristic-algorithms/tree/master/evolutionary):
 
 * Getetic Algorithm:
+
 `sbt 'project evolutionary' 'run ua.org.scala.genetic.app'`
 * Genetic Programming:
+
 `sbt 'project evolutionary' 'run ua.org.scala.geneticProgramming.app`
 * Evolution Strategies:
+
 `sbt 'project evolutionary' 'run ua.org.scala.evolutionStrategies.app`
 * Grammatical Evolution:
+
 `sbt 'project evolutionary' 'run ua.org.scala.gramaticalEvolution.app`
 * Gene Expression Programming:
+
 `sbt 'project evolutionary' 'run ua.org.scala.geneExpressionProgramming.app`
 
 -------------------------------
