@@ -6,9 +6,7 @@ Metaheuristic algorithms on Scala
 
 -------------------------------
 
-####Evolutionary Algorithms [here](http://github.com/immediatus/metaheuristic-algorithms/tree/master/evolutionary):
-
--------------------------------
+####[Evolutionary Algorithms](http://github.com/immediatus/metaheuristic-algorithms/tree/master/evolutionary):
 
 * Getetic Algorithm:
 `sbt 'project evolutionary' 'run ua.org.scala.genetic.app'`
@@ -25,8 +23,6 @@ Metaheuristic algorithms on Scala
 
 ####Swarm Algorithms
 
--------------------------------
-
 * Ant System:
 
 * Ant Colony System:
@@ -38,20 +34,15 @@ Metaheuristic algorithms on Scala
 
 ####Immune Algorithms
 
--------------------------------
-
 * Clonal Selection Algorithm
 
 * Artificial Immune Recognition System
 
 * Immune Network Algorithm
 
-
 -------------------------------
 
 ####Neural Algorithms
-
--------------------------------
 
 * Perceptron
 
