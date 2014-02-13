@@ -25,36 +25,30 @@ The strategy for the Genetic Algorithm is to repeatedly employ surrogates for th
       popSize:    Int                   // - population size
     ): List[T] => T = ...
 
-Run:
-
+**Run:**
 `sbt 'project evolutionary' 'run ua.org.scala.genetic.app'`
 
 ###Genetic Programming
 `src/main/scala/geneticProgramming`
 
-
-Run:
-
+**Run:**
 `sbt 'project evolutionary' 'run ua.org.scala.geneticProgramming.app`
 
 ###Evolution Strategies
 `src/main/scala/evolutionStrategies`
 
-Run:
-
+**Run:**
 `sbt 'project evolutionary' 'run ua.org.scala.evolutionStrategies.app`
 
 ###Grammatical Evolution
 `src/main/scala/gramaticalEvolution`
 
-Run:
-
+**Run:**
 `sbt 'project evolutionary' 'run ua.org.scala.gramaticalEvolution.app`
 
 
 ###Gene Expression Programming
 `src/main/scala/geneExpressionProgramming`
 
-Run:
-
+**Run:**
 `sbt 'project evolutionary' 'run ua.org.scala.geneExpressionProgramming.app`
