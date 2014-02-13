@@ -18,13 +18,6 @@ object app {
       Math.abs(value - (r * r))
     }
 
-  def tournament: List[String] => List[String] =
-    population => {
-      import scala.util.Random._
-      val length = population.length - 1
-      population.map { _ => population(nextInt(length)) }
-    }
-
   def mutation(rate : Double): String => String =
     in => {
       import scala.util.Random._, Math._
@@ -39,7 +32,7 @@ object app {
       import scala.util.Random._, Math._
       if(nextDouble >= rate) parentA
       else {
-        val point = 1 + nextInt(parentB.length - 2)
+        val point = 1 + nextInt(parentB.length - 1)
         val (a, _) = parentA.splitAt(point)
         val (_, b) = parentB.splitAt(point)
         (a ++ b).mkString
@@ -47,10 +40,12 @@ object app {
    }
 
   def main(args : Array[String]) {
+    import core._
+
     val crossoverF  = crossover(0.98)
     val mutationF   = mutation(0.015)
     val fitnessF    = oneMin(20)
-    val tournamentF = tournament
+    val tournamentF = genetic.tournament[String]
     val searchF     = genetic.search[String](crossoverF, mutationF, fitnessF, tournamentF, 1000, 100)
     val population  = List.fill(100) { random(16) }
 

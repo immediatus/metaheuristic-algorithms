@@ -2,6 +2,7 @@ package ua.org.scala
 package geneticProgramming
 
 object app {
+  import core.Show, Show._
 
   trait Operator
   object Plus extends Operator { override def toString = "+" }
@@ -9,16 +10,14 @@ object app {
   object Div extends Operator { override def toString = "/" }
   object Mul extends Operator { override def toString = "*" }
 
+  val operators = Seq(Plus, Minus, Div, Mul)
+
   trait Program[+T]
   case class Node[T](left : Program[T], right : Program[T], op : Operator) extends Program[T]
   case class Number[T](value: T) extends Program[T]
   case object Variable extends Program[Nothing]
 
-  trait Show[T] { def show: T => String }
-  implicit def showExtension[T : Show](value : T) = new {
-    def show: String = implicitly[Show[T]].show(value)
-  }
-
+  // Show type-class instances
   implicit val doubleShowInstnace = new Show[Double] {
     def show = _.toString
   }
@@ -37,11 +36,11 @@ object app {
   def targetFunction: Double => Double =
     x => 2 * x * x - 3 * x - 4
 
-  def randomInput: Double = 
+  def randomInput: Double =
     util.Random.nextDouble * (FUNCTION_TO - FUNCTION_FROM) + FUNCTION_FROM
 
-  val operators = Seq(Plus, Minus, Div, Mul)
-  def randomOperator: Operator = operators(util.Random.nextInt(operators.length - 1))
+  def randomOperator: Operator =
+    operators(util.Random.nextInt(operators.length))
 
   def randomTerm: Program[Double] =
     if(util.Random.nextBoolean) Number(util.Random.nextDouble * 20 - 10)
@@ -52,6 +51,28 @@ object app {
     if(depth == 0 || nextDouble < 0.1) randomTerm
     else Node(randomProgramm(depth - 1), randomProgramm(depth - 1), randomOperator)
   }
+
+  def eval: Program[Double] => Double => Double =
+     program => x => {
+        def eval0(p : Program[Double]): Double = {
+           p match {
+              case Node(l, r, Plus)    => eval0(l) + eval0(r)
+              case Node(l, r, Minus)   => eval0(l) - eval0(r)
+              case Node(l, r, Div)     => eval0(l) / eval0(r)
+              case Node(l, r, Mul)     => eval0(l) * eval0(r)
+              case Number(value)       => value
+              case Variable            => x
+           }
+        }
+        eval0(program)
+     }
+
+  def segmentError(programMap : List[(Double, Double)]): (Double => Double) => Double =
+     program => {
+       programMap.map {
+         case (x, fx) => Math.abs(program(x) - fx)
+       }.sum / programMap.length
+     }
 
 
   def main(args : Array[String]) {
