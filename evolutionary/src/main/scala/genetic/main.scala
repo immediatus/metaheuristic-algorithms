@@ -4,7 +4,7 @@ package genetic
 object geneticModule {
 
   def atod(in : String): Double = {
-    (0L /: in.toCharArray) { (acc, b) => (acc << 1) + (if(b == '0') 0 else 1) } / 1000.0
+    (0L /: in) { (acc, b) => (acc << 1) + (if(b == '0') 0 else 1) } / 1000.0
   }
 
   def random(bits : Int): String = {
@@ -13,7 +13,7 @@ object geneticModule {
   }
 
   def oneMin(value: Double): String => Double =
-    in => { // sqrt function
+    in => { // for sqrt function
       val r = atod(in)
       Math.abs(value - (r * r))
     }
@@ -49,7 +49,7 @@ object geneticModule {
   def main(args : Array[String]) {
     val crossoverF  = crossover(0.98)
     val mutationF   = mutation(0.015)
-    val fitnessF    = oneMin(2)
+    val fitnessF    = oneMin(20)
     val tournamentF = tournament
     val searchF     = genetic.search[String](crossoverF, mutationF, fitnessF, tournamentF, 1000, 100)
     val population  = List.fill(100) { random(16) }
