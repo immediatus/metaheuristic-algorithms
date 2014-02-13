@@ -6,7 +6,7 @@ Metaheuristic algorithms on Scala
 
 -------------------------------
 
-####[Evolutionary Algorithms](http://github.com/immediatus/metaheuristic-algorithms/tree/master/evolutionary):
+####[Evolutionary Algorithms](http://github.com/immediatus/metaheuristic-algorithms/tree/master/evolutionary#evolutionary-algorithms):
 * Genetic Algorithm
 * Genetic Programming
 * Evolution Strategies
