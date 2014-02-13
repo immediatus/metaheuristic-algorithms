@@ -8,32 +8,32 @@ Metaheuristic algorithms on Scala
 
 ####[Evolutionary Algorithms](http://github.com/immediatus/metaheuristic-algorithms/tree/master/evolutionary):
 
-* Genetic Algorithm:
-* Genetic Programming:
-* Evolution Strategies:
-* Grammatical Evolution:
-* Gene Expression Programming:
+* Genetic Algorithm
+* Genetic Programming
+* Evolution Strategies
+* Grammatical Evolution
+* Gene Expression Programming
 
 -------------------------------
 
 ####Swarm Algorithms
 
-* Ant System:
-* Ant Colony System:
-* Bees Algorithm:
+* Ant System
+* Ant Colony System
+* Bees Algorithm
 
 -------------------------------
 
 ####Immune Algorithms
 
-* Clonal Selection Algorithm:
-* Artificial Immune Recognition System:
-* Immune Network Algorithm:
+* Clonal Selection Algorithm
+* Artificial Immune Recognition System
+* Immune Network Algorithm
 
 -------------------------------
 
 ####Neural Algorithms
 
-* Perceptron:
-* Back-propagation:
-* Self-Organizing Map:
+* Perceptron
+* Back-propagation
+* Self-Organizing Map
