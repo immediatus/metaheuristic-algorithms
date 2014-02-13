@@ -1,7 +1,7 @@
 Evolutionary Algorithms
 =================================
 
-###Genetic Algorithm 
+###Genetic Algorithm
 + adaptive strategy and a global optimization technique.
 
 `src/main/scala/genetic`
@@ -25,20 +25,36 @@ The strategy for the Genetic Algorithm is to repeatedly employ surrogates for th
       popSize:    Int                   // - population size
     ): List[T] => T = ...
 
+Run:
 
+`sbt 'project evolutionary' 'run ua.org.scala.genetic.app'`
 
 ###Genetic Programming
 `src/main/scala/geneticProgramming`
 
 
+Run:
+
+`sbt 'project evolutionary' 'run ua.org.scala.geneticProgramming.app`
+
 ###Evolution Strategies
 `src/main/scala/evolutionStrategies`
 
+Run:
+
+`sbt 'project evolutionary' 'run ua.org.scala.evolutionStrategies.app`
 
 ###Grammatical Evolution
 `src/main/scala/gramaticalEvolution`
+
+Run:
+
+`sbt 'project evolutionary' 'run ua.org.scala.gramaticalEvolution.app`
 
 
 ###Gene Expression Programming
 `src/main/scala/geneExpressionProgramming`
 
+Run:
+
+`sbt 'project evolutionary' 'run ua.org.scala.geneExpressionProgramming.app`
