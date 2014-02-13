@@ -19,9 +19,7 @@ Metaheuristic algorithms on Scala
 ####Swarm Algorithms
 
 * Ant System:
-
 * Ant Colony System:
-
 * Bees Algorithm:
 
 -------------------------------
@@ -29,9 +27,7 @@ Metaheuristic algorithms on Scala
 ####Immune Algorithms
 
 * Clonal Selection Algorithm:
-
 * Artificial Immune Recognition System:
-
 * Immune Network Algorithm:
 
 -------------------------------
@@ -39,7 +35,5 @@ Metaheuristic algorithms on Scala
 ####Neural Algorithms
 
 * Perceptron:
-
 * Back-propagation:
-
 * Self-Organizing Map:
