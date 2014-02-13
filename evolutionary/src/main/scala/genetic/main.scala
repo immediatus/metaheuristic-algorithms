@@ -29,15 +29,15 @@ object app {
     in => {
       import scala.util.Random._, Math._
       in.map {
-        case '0'  => if(abs(nextGaussian) < rate) '1' else '0'
-        case '1'  => if(abs(nextGaussian) < rate) '0' else '1'
+        case '0'  => if(nextDouble < rate) '1' else '0'
+        case '1'  => if(nextDouble < rate) '0' else '1'
       }.mkString
     }
 
   def crossover(rate : Double): (String, String) => String =
     (parentA, parentB) => {
       import scala.util.Random._, Math._
-      if(abs(nextGaussian) >= rate) parentA
+      if(nextDouble >= rate) parentA
       else {
         val point = 1 + nextInt(parentB.length - 2)
         val (a, _) = parentA.splitAt(point)
