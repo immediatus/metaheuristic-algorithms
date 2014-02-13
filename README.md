@@ -1,14 +1,14 @@
 Metaheuristic algorithms on Scala
 =================================
-+ Metaheuristic, Scala
++ Metaheuristic and Scala repository
 
-###Content execution:
+###Content:
 
 -------------------------------
 
 ####[Evolutionary Algorithms](http://github.com/immediatus/metaheuristic-algorithms/tree/master/evolutionary):
 
-* Getetic Algorithm:
+* Genetic Algorithm:
 
 `sbt 'project evolutionary' 'run ua.org.scala.genetic.app'`
 * Genetic Programming:
@@ -39,18 +39,18 @@ Metaheuristic algorithms on Scala
 
 ####Immune Algorithms
 
-* Clonal Selection Algorithm
+* Clonal Selection Algorithm:
 
-* Artificial Immune Recognition System
+* Artificial Immune Recognition System:
 
-* Immune Network Algorithm
+* Immune Network Algorithm:
 
 -------------------------------
 
 ####Neural Algorithms
 
-* Perceptron
+* Perceptron:
 
-* Back-propagation
+* Back-propagation:
 
-* Self-Organizing Map
+* Self-Organizing Map:
