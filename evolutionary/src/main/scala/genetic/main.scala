@@ -1,7 +1,7 @@
 package ua.org.scala
 package genetic
 
-object geneticModule {
+object app {
 
   def atod(in : String): Double = {
     (0L /: in) { (acc, b) => (acc << 1) + (if(b == '0') 0 else 1) } / 1000.0
