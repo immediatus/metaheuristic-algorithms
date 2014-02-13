@@ -1,10 +1,12 @@
 Evolutionary Algorithms
 =================================
 
-#Genetic Algorithm
+##Genetic Algorithm 
++ adaptive strategy and a global optimization technique.
+
 `src/main/scala/genetic`
 
-sqrt function solution search:
+**sqrt** function solution search:
 
     def oneMin(value: Double): String => Double =
       in => {
@@ -24,18 +26,19 @@ The strategy for the Genetic Algorithm is to repeatedly employ surrogates for th
     ): List[T] => T = ...
 
 
-#Genetic Programming
+
+##Genetic Programming
 `src/main/scala/geneticProgramming`
 
 
-#Evolution Strategies
+##Evolution Strategies
 `src/main/scala/evolutionStrategies`
 
 
-#Grammatical Evolution
+##Grammatical Evolution
 `src/main/scala/gramaticalEvolution`
 
 
-#Gene Expression Programming
+##Gene Expression Programming
 `src/main/scala/geneExpressionProgramming`
 
