@@ -1,7 +1,7 @@
 Evolutionary Algorithms
 =================================
 
-##Genetic Algorithm 
+###Genetic Algorithm 
 + adaptive strategy and a global optimization technique.
 
 `src/main/scala/genetic`
@@ -10,8 +10,8 @@ Evolutionary Algorithms
 
     def oneMin(value: Double): String => Double =
       in => {
-        val r = atod(in)
-        Math.abs(value - (r * r))
+        val r = atod(in)               // convert genome to number
+        Math.abs(value - (r * r))      // calculate diference
       }
 
 The strategy for the Genetic Algorithm is to repeatedly employ surrogates for the recombination and mutation genetic mechanisms on the population of candidate solutions:
@@ -27,18 +27,18 @@ The strategy for the Genetic Algorithm is to repeatedly employ surrogates for th
 
 
 
-##Genetic Programming
+###Genetic Programming
 `src/main/scala/geneticProgramming`
 
 
-##Evolution Strategies
+###Evolution Strategies
 `src/main/scala/evolutionStrategies`
 
 
-##Grammatical Evolution
+###Grammatical Evolution
 `src/main/scala/gramaticalEvolution`
 
 
-##Gene Expression Programming
+###Gene Expression Programming
 `src/main/scala/geneExpressionProgramming`
 
