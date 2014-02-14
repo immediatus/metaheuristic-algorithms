@@ -18,7 +18,7 @@ object app {
       Math.abs(value - (r * r))
     }
 
-  def mutation(rate : Double): String => String =
+  def mutation(rate : => Double): String => String =
     in => {
       import scala.util.Random._, Math._
       in.map {
@@ -27,7 +27,7 @@ object app {
       }.mkString
     }
 
-  def crossover(rate : Double): (String, String) => String =
+  def crossover(rate : => Double): (String, String) => String =
     (parentA, parentB) => {
       import scala.util.Random._, Math._
       if(nextDouble >= rate) parentA

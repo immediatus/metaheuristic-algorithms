@@ -32,7 +32,7 @@ The strategy for the Genetic Algorithm is to repeatedly employ surrogates for th
 + is an extension of the Genetic Algorithm.
 + inspired by population genetics and evolution at the population level.
 
-**f(x) = 2x² - 3x - 4*** function search:
+**f(x) = 2x² - 3x - 4** function search:
 
 
 `src/main/scala/geneticProgramming`
