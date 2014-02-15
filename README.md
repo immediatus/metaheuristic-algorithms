@@ -6,31 +6,31 @@ Metaheuristic algorithms on Scala
 
 -------------------------------
 
-####Evolutionary Algorithms ([sources](http://github.com/immediatus/metaheuristic-algorithms/tree/master/evolutionary#evolutionary-algorithms)):
-* [Genetic Algorithm](http://en.wikipedia.org/wiki/Genetic_algorithm "wikipedia")
-* [Genetic Programming](http://en.wikipedia.org/wiki/Genetic_programming "wikipedia")
-* [Evolution Strategies](http://en.wikipedia.org/wiki/Evolution_strategy "wikipedia")
-* Grammatical Evolution
-* [Gene Expression Programming](http://en.wikipedia.org/wiki/Gene_expression_programming "wikipedia")
+####Evolutionary Algorithms [[folder]](http://github.com/immediatus/metaheuristic-algorithms/tree/master/evolutionary#evolutionary-algorithms):
+* Genetic Algorithm [[wiki]](http://en.wikipedia.org/wiki/Genetic_algorithm "wikipedia") [[notes]](http://github.com/immediatus/metaheuristic-algorithms/tree/master/evolutionary#genetic-algorithm) [[src]](http://github.com/immediatus/metaheuristic-algorithms/tree/master/evolutionary/src/main/scala/genetic)
+* Genetic Programming [[wiki]](http://en.wikipedia.org/wiki/Genetic_programming "wikipedia") [[notes]](http://github.com/immediatus/metaheuristic-algorithms/tree/master/evolutionary#genetic-programming) [[src]](http://github.com/immediatus/metaheuristic-algorithms/tree/master/evolutionary/src/main/scala/geneticProgramming)
+* Evolution Strategies [[wiki]](http://en.wikipedia.org/wiki/Evolution_strategy "wikipedia") [[notes]](http://github.com/immediatus/metaheuristic-algorithms/tree/master/evolutionary#evolution-strategies) [[src]](http://github.com/immediatus/metaheuristic-algorithms/tree/master/evolutionary/src/main/scala/evolutionStrategies)
+* Grammatical Evolution [[notes]](http://github.com/immediatus/metaheuristic-algorithms/tree/master/evolutionary#grammatical-evolution) [[src]](http://github.com/immediatus/metaheuristic-algorithms/tree/master/evolutionary/src/main/scala/gramaticalEvolution)
+* Gene Expression Programming [[wiki]](http://en.wikipedia.org/wiki/Gene_expression_programming "wikipedia") [[notes]](http://github.com/immediatus/metaheuristic-algorithms/tree/master/evolutionary#gene-expression-programming) [[src]](http://github.com/immediatus/metaheuristic-algorithms/tree/master/evolutionary/src/main/scala/geneExpressionProgramming)
 
 -------------------------------
 
 ####Swarm Algorithms:
-* [Particle swarm optimization](http://en.wikipedia.org/wiki/Particle_swarm_optimization "wikipedia")
-* [Ant System](http://en.wikipedia.org/wiki/Ant_colony_optimization "wikipedia")
+* Particle swarm optimization [[wiki]](http://en.wikipedia.org/wiki/Particle_swarm_optimization "wikipedia")
+* Ant System [[wiki]](http://en.wikipedia.org/wiki/Ant_colony_optimization "wikipedia")
 * Ant Colony System
-* [Bees Algorithm](http://en.wikipedia.org/wiki/Bees_algorithm "wikipedia")
+* Bees Algorithm [[wiki]](http://en.wikipedia.org/wiki/Bees_algorithm "wikipedia")
 
 -------------------------------
 
 ####Immune Algorithms:
-* [Clonal Selection Algorithm](http://en.wikipedia.org/wiki/Clonal_Selection_Algorithm "wikipedia")
+* Clonal Selection Algorithm [[wiki]](http://en.wikipedia.org/wiki/Clonal_Selection_Algorithm "wikipedia")
 * Artificial Immune Recognition System
 * Immune Network Algorithm
 
 -------------------------------
 
 ####Neural Algorithms:
-* [Perceptron](http://en.wikipedia.org/wiki/Perceptron "wikipedia")
-* [Back-propagation](http://en.wikipedia.org/wiki/Backpropagation "wikipedia")
-* [Self-Organizing Map](http://en.wikipedia.org/wiki/Self-organizing_map "wikipedia")
+* Perceptron [[wiki]](http://en.wikipedia.org/wiki/Perceptron "wikipedia")
+* Back-propagation [[wiki]](http://en.wikipedia.org/wiki/Backpropagation "wikipedia")
+* Self-Organizing Map [[wiki]](http://en.wikipedia.org/wiki/Self-organizing_map "wikipedia")
