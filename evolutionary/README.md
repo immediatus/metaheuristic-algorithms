@@ -72,7 +72,7 @@ and expressin tree defined as:
     case class Const[T](value: T) extends Program[T]
     case object Var extends Program[Nothing]
 
-implemented type-classes (from core*) for Programm
+implemented type-classes (from **core***) for Programm
 
     Show[Program[T]]
     Show[Double]
