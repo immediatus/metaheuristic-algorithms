@@ -4,7 +4,7 @@ Evolutionary Algorithms
 ###Genetic Algorithm
 + is an adaptive strategy and a global optimization technique.
 + [wiki](http://en.wikipedia.org/wiki/Genetic_algorithm "wikipedia")
-+ Src: `src/main/scala/genetic`
++ Sources: `src/main/scala/genetic`
 + Run: `sbt 'evolutionary/run-main ua.org.scala.genetic.app'`
 
 
@@ -47,7 +47,7 @@ Fitness function
 + is an extension of the Genetic Algorithm.
 + inspired by population genetics and evolution at the population level.
 + [wiki](http://en.wikipedia.org/wiki/Genetic_programming "wikipedia")
-+ Src: `src/main/scala/geneticProgramming`
++ Sources: `src/main/scala/geneticProgramming`
 + Run: `sbt 'evolutionary/run-main ua.org.scala.geneticProgramming.app'`
 
 
@@ -105,17 +105,17 @@ Fitness function:
 ###Evolution Strategies
 + inspired by macro-level of evolution (phenotype, hereditary, variation).
 + [wiki](http://en.wikipedia.org/wiki/Evolution_strategy "wikipedia")
-+ Src: `src/main/scala/evolutionStrategies`
++ Sources: `src/main/scala/evolutionStrategies`
 + Run: `sbt 'evolutionary/run-main ua.org.scala.evolutionStrategies.app'`
 
 ###Grammatical Evolution
-+ `src/main/scala/gramaticalEvolution`
++ Sources: `src/main/scala/gramaticalEvolution`
 + **Run:** `sbt 'evolutionary/run-main ua.org.scala.gramaticalEvolution.app'`
 
 
 ###Gene Expression Programming
 + [wiki](http://en.wikipedia.org/wiki/Gene_expression_programming "wikipedia")
-+ Src: `src/main/scala/geneExpressionProgramming`
++ Sources: `src/main/scala/geneExpressionProgramming`
 + Run: `sbt 'evolutionary/run-main ua.org.scala.geneExpressionProgramming.app'`
 
 
