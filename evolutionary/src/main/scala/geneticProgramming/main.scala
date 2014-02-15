@@ -6,9 +6,9 @@ import scala.util.{Try, Success, Failure}
 object app {
   import core.Show, Show._
   import core.Navigable, Navigable._
-  import core.util._
+  import core._
 
-  // Genetic programm operators
+  // Genetic program operators
   trait Operator
   object Plus extends Operator { override def toString = "+" }
   object Minus extends Operator { override def toString = "-" }
@@ -157,19 +157,19 @@ object app {
   def main(args : Array[String]) {
     import core._
 
-
-    val testSetF    = (x : Double) => (x, targetFunction(x))
     val MAX_DEPTH   = 7
+    val testSetF    = (x : Double) => (x, targetFunction(x))
+    val testSet     = 30.times { _ => testSetF(randomInput) }
+
     val crossoverF  = crossover[Double](0.90, MAX_DEPTH)
     val mutationF   = mutation(0.015, MAX_DEPTH, randomProgramm(MAX_DEPTH))
-    val fitnessF    = segmentError(30.times { _ => testSetF(randomInput) }.toList)
+    val fitnessF    = segmentError(testSet)
     val tournamentF = genetic.tournament[Program[Double]]
-    val searchF     = genetic.search[Program[Double]](crossoverF, mutationF, fitnessF, tournamentF, 100, 100)
+    val searchF     = genetic.search[Program[Double]](crossoverF, mutationF, fitnessF, tournamentF, 1000, 100)
     val population  = List.fill(100) { randomProgramm(MAX_DEPTH) }
 
     val best = searchF(population)
-    println(best.show)
-
+    println(best.show + " with error " + segmentError(testSet)(best))
   }
 }
 
