@@ -1,6 +1,6 @@
 Metaheuristic algorithms on Scala
 =================================
-+ Metaheuristic and Scala repo
++ Metaheuristic with Scala repo
 
 ###Content:
 
