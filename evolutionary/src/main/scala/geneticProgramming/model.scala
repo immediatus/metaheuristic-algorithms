@@ -22,7 +22,7 @@ object model {
 
   // Show type-class instances
   implicit val doubleShowInstnace = new Show[Double] {
-    def show = x => Math.scalb(x, 1).toString
+    def show = _.toString
   }
 
   implicit def programShowInstance[T : Show]: Show[Program[T]] = new Show[Program[T]] {
