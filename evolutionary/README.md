@@ -29,7 +29,7 @@ The strategy for the Genetic Algorithm is to repeatedly employ surrogates for th
 Crossover function:
 
     def crossover(rate : => Double): (String, String) => String = ...
-    
+
 
 Mutation function:
 
@@ -76,7 +76,7 @@ implemented type-classes (from **core***) for Programm
 
     Show[Program[T]]
     Show[Double]
-    
+
 and
 
     Navigable[Program[T]]
@@ -85,7 +85,7 @@ and
 Crossover function:
 
     def crossover[T](
-        rate : => Double, 
+        rate : => Double,
         maxDepth : => Int
     )(implicit default: Program[T]): (Program[T], Program[T]) => Program[T] = ...
 
@@ -131,7 +131,7 @@ Fitness function:
 
 ##Core type-classes:
 
-    trait Show[T] { 
+    trait Show[T] {
         def show: T => String // - show method for any type T
     }
 
