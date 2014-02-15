@@ -91,8 +91,6 @@ object app {
 
 
   def main(args : Array[String]) {
-    import core._
-
     // problem configuration
     val testSetF    = (x : Double) => (x, targetFunction(x))
     val testSet     = 30.times { _ => testSetF(randomInput) }
