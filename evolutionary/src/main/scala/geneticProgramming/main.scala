@@ -127,7 +127,10 @@ object app {
        }
      }
 
-  def crossover[T](rate : => Double, maxDepth : => Int)(implicit default: Program[T]): (Program[T], Program[T]) => Program[T] =
+  def crossover[T](
+    rate : => Double,
+    maxDepth : => Int
+  )(implicit default: Program[T]): (Program[T], Program[T]) => Program[T] =
     (parentA, parentB) => {
       import util.Random._
       if(nextDouble >= rate) parentA
