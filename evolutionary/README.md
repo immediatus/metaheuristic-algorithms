@@ -2,7 +2,7 @@ Evolutionary Algorithms
 =================================
 
 ###Genetic Algorithm
-+ ia an adaptive strategy and a global optimization technique.
++ is an adaptive strategy and a global optimization technique.
 + [wiki](http://en.wikipedia.org/wiki/Genetic_algorithm "wikipedia")
 
 `src/main/scala/genetic`
