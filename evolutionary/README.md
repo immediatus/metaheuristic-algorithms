@@ -3,6 +3,7 @@ Evolutionary Algorithms
 
 ###Genetic Algorithm
 + ia an adaptive strategy and a global optimization technique.
++ [wiki](http://en.wikipedia.org/wiki/Genetic_algorithm "wikipedia")
 
 `src/main/scala/genetic`
 
@@ -48,6 +49,8 @@ Fitness function
 ###Genetic Programming
 + is an extension of the Genetic Algorithm.
 + inspired by population genetics and evolution at the population level.
++ [wiki](http://en.wikipedia.org/wiki/Genetic_programming "wikipedia")
+
 
 `src/main/scala/geneticProgramming`
 
@@ -102,12 +105,13 @@ Fitness function:
     def segmentError(programMap : => List[(Double, Double)]): Program[Double] => Double =...
 
 
-
 **Run:**
 `sbt 'evolutionary/run-main ua.org.scala.geneticProgramming.app'`
 
 ###Evolution Strategies
 + inspired by macro-level of evolution (phenotype, hereditary, variation).
++ [wiki](http://en.wikipedia.org/wiki/Evolution_strategy "wikipedia")
+
 
 `src/main/scala/evolutionStrategies`
 
@@ -122,6 +126,9 @@ Fitness function:
 
 
 ###Gene Expression Programming
++ [wiki](http://en.wikipedia.org/wiki/Gene_expression_programming "wikipedia")
+
+
 `src/main/scala/geneExpressionProgramming`
 
 **Run:**
