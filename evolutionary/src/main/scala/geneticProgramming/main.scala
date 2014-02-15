@@ -93,10 +93,12 @@ object app {
   def main(args : Array[String]) {
     import core._
 
-    val MAX_DEPTH   = 7
+    // problem configuration
     val testSetF    = (x : Double) => (x, targetFunction(x))
     val testSet     = 30.times { _ => testSetF(randomInput) }
 
+    // algorithm configuration
+    val MAX_DEPTH   = 7
     val crossoverF  = crossover[Double](0.90, MAX_DEPTH)
     val mutationF   = mutation(0.015, MAX_DEPTH, randomProgramm(MAX_DEPTH))
     val fitnessF    = segmentError(testSet)
@@ -104,6 +106,7 @@ object app {
     val searchF     = genetic.search[Program[Double]](crossoverF, mutationF, fitnessF, tournamentF, 1000, 100)
     val population  = List.fill(100) { randomProgramm(MAX_DEPTH) }
 
+    //search for best result
     val best = searchF(population)
     println(best.show + " with error " + segmentError(testSet)(best))
   }

@@ -42,6 +42,7 @@ object app {
   def main(args : Array[String]) {
     import core._
 
+    //algorithm configuration
     val crossoverF  = crossover(0.98)
     val mutationF   = mutation(0.015)
     val fitnessF    = oneMin(20)
@@ -49,6 +50,7 @@ object app {
     val searchF     = genetic.search[String](crossoverF, mutationF, fitnessF, tournamentF, 1000, 100)
     val population  = List.fill(100) { random(16) }
 
+    //search for best result
     val best = searchF(population)
     println(atod(best))
   }
