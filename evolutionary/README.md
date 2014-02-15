@@ -5,6 +5,8 @@ Evolutionary Algorithms
 + is an adaptive strategy and a global optimization technique.
 + [wiki](http://en.wikipedia.org/wiki/Genetic_algorithm "wikipedia")
 + `src/main/scala/genetic`
++ **Run:** `sbt 'evolutionary/run-main ua.org.scala.genetic.app'`
+
 
 **sqrt(value) = x** function solution search:
 
@@ -41,15 +43,13 @@ Fitness function
     def oneMin(value: Double): String => Double = ..
 
 
-
-**Run:**
-`sbt 'evolutionary/run-main ua.org.scala.genetic.app'`
-
 ###Genetic Programming
 + is an extension of the Genetic Algorithm.
 + inspired by population genetics and evolution at the population level.
 + [wiki](http://en.wikipedia.org/wiki/Genetic_programming "wikipedia")
 + `src/main/scala/geneticProgramming`
++ **Run:** `sbt 'evolutionary/run-main ua.org.scala.geneticProgramming.app'`
+
 
 search for function: **f(x) = 2x² - 3x - 4**
 
@@ -102,30 +102,21 @@ Fitness function:
     def segmentError(programMap : => List[(Double, Double)]): Program[Double] => Double =...
 
 
-**Run:**
-`sbt 'evolutionary/run-main ua.org.scala.geneticProgramming.app'`
-
 ###Evolution Strategies
 + inspired by macro-level of evolution (phenotype, hereditary, variation).
 + [wiki](http://en.wikipedia.org/wiki/Evolution_strategy "wikipedia")
 + `src/main/scala/evolutionStrategies`
-
-**Run:**
-`sbt 'evolutionary/run-main ua.org.scala.evolutionStrategies.app'`
++ **Run:** `sbt 'evolutionary/run-main ua.org.scala.evolutionStrategies.app'`
 
 ###Grammatical Evolution
 + `src/main/scala/gramaticalEvolution`
-
-**Run:**
-`sbt 'evolutionary/run-main ua.org.scala.gramaticalEvolution.app'`
++ **Run:** `sbt 'evolutionary/run-main ua.org.scala.gramaticalEvolution.app'`
 
 
 ###Gene Expression Programming
 + [wiki](http://en.wikipedia.org/wiki/Gene_expression_programming "wikipedia")
 + `src/main/scala/geneExpressionProgramming`
-
-**Run:**
-`sbt 'evolutionary/run-main ua.org.scala.geneExpressionProgramming.app'`
++ **Run:** `sbt 'evolutionary/run-main ua.org.scala.geneExpressionProgramming.app'`
 
 
 
