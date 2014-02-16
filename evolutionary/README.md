@@ -139,7 +139,7 @@ and
     Navigable[Program[T]]
 
 
-Crossover function:
+Replacement function:
 
     def crossover[T](
         rate : => Double,
