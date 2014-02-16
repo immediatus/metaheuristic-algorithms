@@ -1,6 +1,19 @@
 Evolutionary Algorithms
 =================================
 
+####Genaral view:
+
+    t := 0;
+    initialize(P (t));
+    evaluate(P (t));
+    while not terminate(P (t)) do
+        P (t + 1) := select(P (t));
+        recombine(P (t + 1));
+        mutate(P (t + 1));
+        evaluate(P (t + 1));
+        t := t + 1;
+    od
+
 ###Genetic Algorithm
 + is an adaptive strategy and a global optimization technique.
 + Details: [wiki](http://en.wikipedia.org/wiki/Genetic_algorithm "wikipedia")
