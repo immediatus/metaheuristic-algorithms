@@ -14,6 +14,50 @@ Evolutionary Algorithms
         t := t + 1;
     od
 
++ **Individuals** -  is a sequence of chromosomes, the genome. Size and structure of the genome is determined by the number of chromosomes and their types.
+
++ **Populations** - represents a collection of individuals where they may be sorted in a population either in ascending or descending order with respect to their fitness.
+
+**Genegic operators:**
+
++ **Selection** - define a strategy of selection which usually base the chance of selection of particular individuals on their fitness values or their rank in the population, respectively.
+ 
+   * Extinctiveness
+   * Elitism
+   * (μ,λ)-Selection
+   * (μ+λ)-Selection
+   * Stochastic Selection
+   * Proportional Selection
+   * Ranking Selection
+   * Tournament Selection
+  
+where:
+   **μ** - size of the parent population;
+   **λ** - size of the offspring population from which individuals are selected.
+
+
++ **Replacement** - a number of candidates are generated from the current population, e. g. by recombination and mutation, and may replace some or all of the parents top produce the next generation.
+
+   * Generational Replacement
+   * Steady-State Replacement
+   * Recombination
+   * Crossover of Strings
+   * Discrete Recombination
+   * Intermediate Recombination
+   * Panmictic Recombination
+ 
++ **Mutation** - define a mutation stategy for GAs & ESs
+
+   * Discrete Mutations
+   * Continuous Mutations
+   * Inversion
+
++ **Self-adaptation in Evolution Strategies**
+
+   * Standard adaptation
+   * Rotation matrix adaptation
+
+
 ###Genetic Algorithm
 + is an adaptive strategy and a global optimization technique.
 + Details: [wiki](http://en.wikipedia.org/wiki/Genetic_algorithm "wikipedia")
