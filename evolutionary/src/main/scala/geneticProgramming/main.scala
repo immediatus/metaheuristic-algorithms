@@ -100,8 +100,8 @@ object app {
     val crossoverF  = crossover[Double](0.90, MAX_DEPTH)
     val mutationF   = mutation(0.015, MAX_DEPTH, randomProgramm(MAX_DEPTH))
     val fitnessF    = segmentError(testSet)
-    val tournamentF = genetic.tournament[Program[Double]]
-    val searchF     = genetic.search[Program[Double]](crossoverF, mutationF, fitnessF, tournamentF, 1000, 100)
+    val selectionF = genetic.tournament[Program[Double]]
+    val searchF     = genetic.search[Program[Double]](crossoverF, mutationF, fitnessF, selectionF, 1000, 100)
     val population  = List.fill(100) { randomProgramm(MAX_DEPTH) }
 
     //search for best result
