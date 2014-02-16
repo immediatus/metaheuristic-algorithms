@@ -76,12 +76,12 @@ where:
 The strategy for the Genetic Algorithm is to repeatedly employ surrogates for the recombination and mutation genetic mechanisms on the population of candidate solutions:
 
     def search[T](
-      crossover:  (T, T) => T,          // - crossover function
-      mutation:   T => T,               // - mutation function
-      fitness:    T => Double,          // - fitness calculation function
-      tournament: List[T] => List[T],   // - tournament function
-      maxGens:    Int,                  // - namber of generations
-      popSize:    Int                   // - population size
+      replacement: (T, T) => T,          // - replacement function
+      mutation:    T => T,               // - mutation function
+      fitness:     T => Double,          // - fitness calculation function
+      selection:   List[T] => List[T],   // - selection function
+      maxGens:     Int,                  // - namber of generations
+      popSize:     Int                   // - population size
     ): List[T] => T = ...
 
 
