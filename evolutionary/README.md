@@ -57,7 +57,8 @@ where:
    * Standard adaptation
    * Rotation matrix adaptation
 
-The strategy for the Genetic Algorithm is to repeatedly employ surrogates for the recombination and mutation genetic mechanisms on the population of candidate solutions:
+The strategy for the Genetic Algorithm is to repeatedly employ surrogates for the recombination and mutation genetic mechanisms on the population of candidate solutions.
+
 Strategy implemented in `src/main/scala/core/genetic.scala`:
 
     def search[T](
