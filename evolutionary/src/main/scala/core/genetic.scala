@@ -3,13 +3,6 @@ package core
 
 object genetic {
 
-  def tournament[T]: List[T] => List[T] =
-    population => {
-      import scala.util.Random._
-      val length = population.length - 1
-      population.map { _ => population(nextInt(length)) }
-    }
-
   def search[T](
     replacement:  (T, T) => T,
     mutation:     T => T,
@@ -20,27 +13,25 @@ object genetic {
   ): List[T] => T =
     population => {
 
-      def alignPopulation(population: List[T]): List[T] =
-        if(population.length % 2 == 0) population else population :+ population.head
+      def padPopulation: List[T] => List[T] =
+        population => if(population.length % 2 == 0) population else population :+ population.head
 
-      def reproduce0(parent : List[T]): List[T] = {
-        parent match {
+      def reproduce0: List[T] => List[T] = {
           case a :: b :: tail =>
             mutation(replacement(a, b)) ::
             mutation(replacement(b, a)) ::
             reproduce0(tail)
           case _ => Nil
-        }
       }
+
+      def evolutionOperator: List[T] => List[T] =
+        selection andThen padPopulation andThen reproduce0
 
       @annotation.tailrec
       def search0(gen : Int, population : List[T], best: T): T = {
         if(gen == 0) best
         else {
-          val next = reproduce0 { alignPopulation { selection apply population } }
-            .sortBy { Memo(fitness) }
-            .take(popSize)
-
+          val next = evolutionOperator(population).sortBy { Memo(fitness) }.take(popSize)
           search0(gen - 1, next, List(next.head, best).minBy { fitness })
         }
       }

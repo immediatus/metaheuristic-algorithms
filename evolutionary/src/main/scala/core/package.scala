@@ -19,6 +19,21 @@ package object core {
     }
   }
 
+  implicit def swapExt[T](xs : List[T]) = new {
+    def swap(i : Int, j : Int): List[T] = {
+      val(a, b) = (xs(i), xs(j))
+
+      def swap0(l : List[T]): List[T] = l match {
+        case `a` :: tail  => b :: swap0(tail)
+        case `b` :: tail  => a :: swap0(tail)
+        case  x  :: tail  => x :: swap0(tail)
+        case  _           => Nil
+      }
+
+      swap0(xs)
+    }
+  }
+
   case class Memo[-T, +R](f : T => R) extends Function1[T, R] {
     private[this] val _memo = collection.mutable.Map.empty[T, R]
     def apply(x : T): R = _memo.getOrElseUpdate(x, f(x))

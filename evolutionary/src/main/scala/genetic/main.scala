@@ -37,7 +37,7 @@ object app {
     val crossoverF  = crossover(0.98)
     val mutationF   = mutation(0.015)
     val fitnessF    = oneMin(20)
-    val selectionF  = genetic.tournament[Individual]
+    val selectionF  = selection.tournament[Individual]
     val searchF     = genetic.search[Individual](crossoverF, mutationF, fitnessF, selectionF, 1000, 100)
     val population  = List.fill(100) { random(16) }
 

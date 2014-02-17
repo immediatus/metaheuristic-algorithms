@@ -79,7 +79,7 @@ Strategy implemented in `src/main/scala/core/genetic.scala`:
 + Run: `sbt 'evolutionary/run-main ua.org.scala.genetic.app'`
 
 
-**sqrt(value) = x** function solution search:
+**Problem:** search for value in **sqrt(x) = value**.
 
     def oneMin(value: Double): Individual => Double =
       in => { // for sqrt function
@@ -114,7 +114,7 @@ Fitness function
 + Run: `sbt 'evolutionary/run-main ua.org.scala.geneticProgramming.app'`
 
 
-approximation for function: **f(x) = 2x² - 3x - 4**
+**Problem:** approximation for function: **f(x) = 2x² - 3x - 4**.
 
     def targetFunction: Double => Double =
         x => 2 * x * x - 3 * x - 4
@@ -135,7 +135,7 @@ and expressin tree defined as:
     case class Const[T](value: T) extends Program[T]
     case object Var extends Program[Nothing]
 
-implemented type-classes (from **core***) for Programm
+implemented type-classes (from **core**) for Programm
 
     Show[Program[T]]
     Show[Double]
@@ -152,6 +152,7 @@ Replacement function:
         maxDepth : => Int
     )(implicit default: Program[T]): (Program[T], Program[T]) => Program[T] = ...
 
+
 Mutation function:
 
     def mutation[T](
@@ -160,7 +161,9 @@ Mutation function:
         random : => Program[T]
     )(implicit default: Program[T]):  Program[T] => Program[T] = ...
 
+
 Fitness function:
++ error sum in segment:
 
     def segmentError(programMap : => List[(Double, Double)]): Program[Double] => Double =...
 
@@ -170,6 +173,13 @@ Fitness function:
 + Details: [wiki](http://en.wikipedia.org/wiki/Evolution_strategy "wikipedia")
 + Sources: `src/main/scala/evolutionStrategies`
 + Run: `sbt 'evolutionary/run-main ua.org.scala.evolutionStrategies.app'`
+
+**Problem:** the travelling salesman problem.
+
+Fitness funtion:
++ measure the total distance of a route in the travelling salesman problem:
+
+
 
 ###Grammatical Evolution
 + Sources: `src/main/scala/gramaticalEvolution`
