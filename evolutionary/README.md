@@ -57,6 +57,19 @@ where:
    * Standard adaptation
    * Rotation matrix adaptation
 
+The strategy for the Genetic Algorithm is to repeatedly employ surrogates for the recombination and mutation genetic mechanisms on the population of candidate solutions:
+Strategy implemented in `src/main/scala/core/genetic.scala`:
+
+    def search[T](
+      replacement: (T, T) => T,          // - replacement function
+      mutation:    T => T,               // - mutation function
+      fitness:     T => Double,          // - fitness calculation function
+      selection:   List[T] => List[T],   // - selection function
+      maxGens:     Int,                  // - namber of generations
+      popSize:     Int                   // - population size
+    ): List[T] => T = ...
+
+
 
 ###Genetic Algorithm
 + is an adaptive strategy and a global optimization technique.
@@ -76,20 +89,6 @@ where:
 where:
 
     type Individual = Array[Boolean]
-
-
-
-The strategy for the Genetic Algorithm is to repeatedly employ surrogates for the recombination and mutation genetic mechanisms on the population of candidate solutions:
-
-    def search[T](
-      replacement: (T, T) => T,          // - replacement function
-      mutation:    T => T,               // - mutation function
-      fitness:     T => Double,          // - fitness calculation function
-      selection:   List[T] => List[T],   // - selection function
-      maxGens:     Int,                  // - namber of generations
-      popSize:     Int                   // - population size
-    ): List[T] => T = ...
-
 
 Crossover function:
 
@@ -114,7 +113,7 @@ Fitness function
 + Run: `sbt 'evolutionary/run-main ua.org.scala.geneticProgramming.app'`
 
 
-search for function: **f(x) = 2x² - 3x - 4**
+approximation for function: **f(x) = 2x² - 3x - 4**
 
     def targetFunction: Double => Double =
         x => 2 * x * x - 3 * x - 4
