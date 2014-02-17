@@ -21,7 +21,7 @@ Evolutionary Algorithms
 **Genegic operators:**
 
 + **Selection** - define a strategy of selection which usually base the chance of selection of particular individuals on their fitness values or their rank in the population, respectively.
- 
+
    * Extinctiveness
    * Elitism
    * (μ,λ)-Selection
@@ -30,7 +30,7 @@ Evolutionary Algorithms
    * Proportional Selection
    * Ranking Selection
    * Tournament Selection
-  
+
 where:
    **μ** - size of the parent population;
    **λ** - size of the offspring population from which individuals are selected.
@@ -45,7 +45,7 @@ where:
    * Discrete Recombination
    * Intermediate Recombination
    * Panmictic Recombination
- 
+
 + **Mutation** - define a mutation stategy for GAs & ESs
 
    * Discrete Mutations
@@ -67,11 +67,17 @@ where:
 
 **sqrt(value) = x** function solution search:
 
-    def oneMin(value: Double): String => Double =
-      in => {
-        val r = atod(in)               // convert genome to number
-        Math.abs(value - (r * r))      // calculate diference
+    def oneMin(value: Double): Individual => Double =
+      in => { // for sqrt function
+        val r = itod(in)
+        Math.abs(value - (r * r))
       }
+
+where:
+
+    type Individual = Array[Boolean]
+
+
 
 The strategy for the Genetic Algorithm is to repeatedly employ surrogates for the recombination and mutation genetic mechanisms on the population of candidate solutions:
 
@@ -87,17 +93,17 @@ The strategy for the Genetic Algorithm is to repeatedly employ surrogates for th
 
 Crossover function:
 
-    def crossover(rate : => Double): (String, String) => String = ...
+    def crossover(rate : => Double): (Individual, Individual) => Individual = ...
 
 
 Mutation function:
 
-    def mutation(rate : => Double): String => String = ...
+    def mutation(rate : => Double): Individual => Individual = ...
 
 
 Fitness function
 
-    def oneMin(value: Double): String => Double = ..
+    def oneMin(value: Double): Individual => Double = ..
 
 
 ###Genetic Programming

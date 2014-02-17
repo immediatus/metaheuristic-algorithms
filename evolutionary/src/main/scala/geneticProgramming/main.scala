@@ -9,17 +9,6 @@ object app {
   import core.Navigable, Navigable._
   import core._
 
-  // Genetic program paraters & functions
-  val FUNCTION_FROM = -10
-  val FUNCTION_TO = 10
-
-  implicit val default: Program[Double] = randomTerm
-
-  def targetFunction: Double => Double =
-    x => 2 * x * x - 3 * x - 4
-
-  def randomInput: Double =
-    util.Random.nextDouble * (FUNCTION_TO - FUNCTION_FROM) + FUNCTION_FROM
 
   def randomOperator: Operator =
     operators(util.Random.nextInt(operators.length))
@@ -92,15 +81,25 @@ object app {
 
   def main(args : Array[String]) {
     // problem configuration
+    val FUNCTION_FROM = -10
+    val FUNCTION_TO = 10
+
+    def targetFunction: Double => Double =
+      x => 2 * x * x - 3 * x - 4
+
+    def randomInput: Double =
+      util.Random.nextDouble * (FUNCTION_TO - FUNCTION_FROM) + FUNCTION_FROM
+
     val testSetF    = (x : Double) => (x, targetFunction(x))
     val testSet     = 30.times { _ => testSetF(randomInput) }
 
     // algorithm configuration
+    implicit val default: Program[Double] = randomTerm
     val MAX_DEPTH   = 7
     val crossoverF  = crossover[Double](0.90, MAX_DEPTH)
     val mutationF   = mutation(0.015, MAX_DEPTH, randomProgramm(MAX_DEPTH))
     val fitnessF    = segmentError(testSet)
-    val selectionF = genetic.tournament[Program[Double]]
+    val selectionF  = genetic.tournament[Program[Double]]
     val searchF     = genetic.search[Program[Double]](crossoverF, mutationF, fitnessF, selectionF, 1000, 100)
     val population  = List.fill(100) { randomProgramm(MAX_DEPTH) }
 
