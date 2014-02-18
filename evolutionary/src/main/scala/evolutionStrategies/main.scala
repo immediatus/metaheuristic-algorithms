@@ -5,7 +5,7 @@ object app {
   import model._
   import core._
 
-  type Individual = List[City]
+  type Individual = (List[City], List[Double])
 
   def totalDistance(in : Individual): Double =
     in.tail.foldLeft((0.0, in.head)) {
@@ -32,21 +32,33 @@ object app {
         mutation0(nextInt(mutationCount + 1), individual)
     }
 
-    def orderCrossover[T](
-      rate : Double
-    ): (List[T], List[T]) => List[T] =
-      (parentA, parentB) => {
-        import util.Random._
-        if(nextDouble >= rate) parentA
-        else {
-          val List(point1, point2) = List(nextInt(parentA.length), nextInt(parentA.length)).sorted
-          Nil
-        }
-      }
+  def mutationWithCountStrategy[T](mutationAmount : Int): (Int, List[T]) => (Int, List[T]) =
+    (mutationCount, individual) => orderMutation(mutationCount, mutationAmount) apply individual
+
+  def mutationWithAmountStrategy[T](mutationCount : Int): (Int, List[T]) => (Int, List[T]) =
+    (mutationAmount, individual) => orderMutation(mutationCount, mutationAmount) apply individual
+
+  def strategyMutation(value : Int): (Int, List[T]) => (Int, List[T]) = {
+    case (stratgy, individual) =>
+      import util.Random._
+      (value * (0.7 * nextDouble + 0.7 * nextDouble), individual)
+  }
+
 
   def main(args : Array[String]) {
-    println(orderCrossover(0.5)(List(1,2,3,4,5), List(5,4,3,2,1)))
+    import util.Random._
 
+    val CITY_COUNT  = 5
+    val baseList    = cities.take(CITY_COUNT)
+
+    val iMutationF  = mutation(0.015)
+    val sMutationF  = mutation(0.015)
+    val fitnessF    = totalDistance _
+    val searchF     = evolutionStrategies.search[Individual](iMutationF, sMutationF, fitnessF, 1000, 70, 30)
+    val population  = shuffle(baseList).map { c => (c, nextInt(CITY_COUNT / 2)) }
+
+    val best = searchF(population)
+    println("distance: " + totalDistance(best))
   }
 }
 

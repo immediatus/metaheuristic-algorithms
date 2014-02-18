@@ -3,18 +3,7 @@ Evolutionary Algorithms
 
 ####Genaral view:
 
-    t := 0;
-    initialize(P (t));
-    evaluate(P (t));
-    while not terminate(P (t)) do
-        P (t + 1) := select(P (t));
-        recombine(P (t + 1));
-        mutate(P (t + 1));
-        evaluate(P (t + 1));
-        t := t + 1;
-    od
-
-+ **Individuals** -  is a sequence of chromosomes, the genome. Size and structure of the genome is determined by the number of chromosomes and their types.
++ **Individuals** - is a sequence of chromosomes, the genome. Size and structure of the genome is determined by the number of chromosomes and their types.
 
 + **Populations** - represents a collection of individuals where they may be sorted in a population either in ascending or descending order with respect to their fitness.
 
@@ -34,7 +23,6 @@ Evolutionary Algorithms
 where:
    **μ** - size of the parent population;
    **λ** - size of the offspring population from which individuals are selected.
-
 
 + **Replacement** - a number of candidates are generated from the current population, e. g. by recombination and mutation, and may replace some or all of the parents top produce the next generation.
 
@@ -57,6 +45,26 @@ where:
    * Standard adaptation
    * Rotation matrix adaptation
 
+
+###Genetic Algorithm
++ is an adaptive strategy and a global optimization technique. This is the most popular type of EA. One seeks the solution of a problem in the form of strings of numbers (traditionally binary, although the best representations are usually those that reflect something about the problem being solved), by applying operators such as recombination and mutation (sometimes one, sometimes both).
++ Details: [wiki](http://en.wikipedia.org/wiki/Genetic_algorithm "wikipedia")
++ Sources: `src/main/scala/genetic`
++ Run: `sbt 'evolutionary/run-main ua.org.scala.genetic.app'`
+
+Algorithm:
+
+    t := 0
+    initialize(P (t))
+    evaluate(P (t))
+    while not terminate(P (t)) do
+        P (t + 1) := select(P (t));
+        recombine(P (t + 1));
+        mutate(P (t + 1));
+        evaluate(P (t + 1));
+        t := t + 1;
+    od
+
 The strategy for the Genetic Algorithm is to repeatedly employ surrogates for the recombination and mutation genetic mechanisms on the population of candidate solutions.
 
 Strategy implemented in `src/main/scala/core/genetic.scala`:
@@ -69,14 +77,6 @@ Strategy implemented in `src/main/scala/core/genetic.scala`:
       maxGens:     Int,                  // - namber of generations
       popSize:     Int                   // - population size
     ): List[T] => T = ...
-
-
-
-###Genetic Algorithm
-+ is an adaptive strategy and a global optimization technique.
-+ Details: [wiki](http://en.wikipedia.org/wiki/Genetic_algorithm "wikipedia")
-+ Sources: `src/main/scala/genetic`
-+ Run: `sbt 'evolutionary/run-main ua.org.scala.genetic.app'`
 
 
 **Problem:** search for value in **sqrt(x) = value**.
@@ -107,7 +107,7 @@ Fitness function
 
 
 ###Genetic Programming
-+ is an extension of the Genetic Algorithm.
++ is an extension of the Genetic Algorithm. Here the solutions are in the form of computer programs, and their fitness is determined by their ability to solve a computational problem.
 + inspired by population genetics and evolution at the population level.
 + Details: [wiki](http://en.wikipedia.org/wiki/Genetic_programming "wikipedia")
 + Sources: `src/main/scala/geneticProgramming`
@@ -169,15 +169,20 @@ Fitness function:
 
 
 ###Evolution Strategies
-+ inspired by macro-level of evolution (phenotype, hereditary, variation).
++ inspired by macro-level of evolution (phenotype, hereditary, variation). Works with vectors of real numbers as representations of solutions, and typically uses self-adaptive mutation rates.
 + Details: [wiki](http://en.wikipedia.org/wiki/Evolution_strategy "wikipedia")
 + Sources: `src/main/scala/evolutionStrategies`
 + Run: `sbt 'evolutionary/run-main ua.org.scala.evolutionStrategies.app'`
+
+Algorithm:
+
+    (μ+λ) - ES
 
 **Problem:** the travelling salesman problem.
 
 Fitness funtion:
 + measure the total distance of a route in the travelling salesman problem:
+
 
 
 
