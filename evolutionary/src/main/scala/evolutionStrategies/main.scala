@@ -5,21 +5,27 @@ object app {
   import model._
   import core._
 
-  type Individual = (List[City], List[Double])
+  type Individual = (List[Double], List[City])
 
-  def totalDistance(in : Individual): Double =
-    in.tail.foldLeft((0.0, in.head)) {
-      case ((dist, a), b) =>
-        val (latitude, longtitude) = (b.latitude - a.latitude, b.longtitude - a.longtitude)
-        (dist + Math.sqrt(latitude * latitude + longtitude * longtitude), b)
-    }._1
+  def totalDistance: Individual => Double = {
+    case (_, in) =>
+      in.tail.foldLeft((0.0, in.head)) {
+        case ((dist, a), b) =>
+          val (latitude, longtitude) = (b.latitude - a.latitude, b.longtitude - a.longtitude)
+          (dist + Math.sqrt(latitude * latitude + longtitude * longtitude), b)
+      }._1
+  }
 
   def orderMutation[T](
     mutationCount : Int,
-    mutationAmount : Int
-  ): List[T] => List[T] =
-    individual => {
+  ): List[Double] => List[T] => List[T] =
+    strategy => individual => {
       import util.Random._
+
+      val elements = (individual zip strategy)
+        .sortBy { case (_, st) => st }
+        .map { case (e, _) => e }
+        .take { nextInt(mutationCount + 1) }
 
       @annotation.tailrec
       def mutation0(i : Int, in : List[T]): List[T] =
@@ -29,35 +35,38 @@ object app {
           val toIndex = (fromIndex + nextInt(mutationAmount)) % in.length
           mutation0(i - 1, in.swap(fromIndex, toIndex))
         }
+
         mutation0(nextInt(mutationCount + 1), individual)
     }
 
-  def mutationWithCountStrategy[T](mutationAmount : Int): (Int, List[T]) => (Int, List[T]) =
-    (mutationCount, individual) => orderMutation(mutationCount, mutationAmount) apply individual
-
-  def mutationWithAmountStrategy[T](mutationCount : Int): (Int, List[T]) => (Int, List[T]) =
-    (mutationAmount, individual) => orderMutation(mutationCount, mutationAmount) apply individual
-
-  def strategyMutation(value : Int): (Int, List[T]) => (Int, List[T]) = {
-    case (stratgy, individual) =>
-      import util.Random._
-      (value * (0.7 * nextDouble + 0.7 * nextDouble), individual)
+  def countAdjustStrategy[T](mutationAmount : Int): Individual => Individual = {
+    case (mutationCount, individual) =>
+      (mutationCount, orderMutation(mutationCount.toInt, mutationAmount) apply individual)
   }
 
+  def strategyMutation[T](value : Int): Individual => Individual = {
+    case (stratgy, individual) =>
+      import util.Random._
+      val ta = 1 / (Math.sqrt(2 * Math.sqrt(value)))
+      (stratgy * Math.exp(ta * nextDouble), individual)
+  }
 
   def main(args : Array[String]) {
+    import model._
+    import core.Show, Show._
     import util.Random._
 
-    val CITY_COUNT  = 5
-    val baseList    = cities.take(CITY_COUNT)
+    val CITY_COUNT  = 20
+    val cities    = europe.take(CITY_COUNT)
 
-    val iMutationF  = mutation(0.015)
-    val sMutationF  = mutation(0.015)
-    val fitnessF    = totalDistance _
-    val searchF     = evolutionStrategies.search[Individual](iMutationF, sMutationF, fitnessF, 1000, 70, 30)
-    val population  = shuffle(baseList).map { c => (c, nextInt(CITY_COUNT / 2)) }
+    val iMutationF  = countAdjustStrategy(CITY_COUNT)
+    val sMutationF  = strategyMutation(CITY_COUNT)
+    val fitnessF    = totalDistance
+    val searchF     = evolutionStrategy.search[Individual](iMutationF, sMutationF, fitnessF, 1000, 30, 70)
+    val population  = 100.times { _ => (nextInt(CITY_COUNT / 2).toDouble, shuffle(cities)) }
 
-    val best = searchF(population)
+    val best @ (_, path) = searchF(population)
+    println(path)
     println("distance: " + totalDistance(best))
   }
 }

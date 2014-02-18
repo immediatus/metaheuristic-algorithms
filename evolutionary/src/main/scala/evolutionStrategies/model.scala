@@ -2,8 +2,18 @@ package ua.org.scala
 package evolutionStrategies
 
 object model {
+  import core.Show, Show._
 
   case class City(name : String, latitude : Double, longtitude : Double)
+
+  implicit val cityShowInstance = new Show[City] {
+    def show = _.name
+  }
+
+  implicit def listShowInstance[T : Show] = new Show[List[T]] {
+    def show =
+      cities => (cities.head.show /: cities.tail) { case (acc, c) => acc + " -> " + c.show }
+  }
 
   def getCities(count : Int): List[City] = {
     import collection.mutable.Buffer, util.Random._
