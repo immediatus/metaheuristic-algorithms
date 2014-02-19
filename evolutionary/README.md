@@ -182,6 +182,7 @@ Fitness function:
 
 Algorithm:
 
+    // (1 + 1) - ES
     t := 0;
     initialize(parent);
     evaluate(parent);
@@ -191,8 +192,6 @@ Algorithm:
       parent := best(parent, of f spring);
       t := t + 1;
     od
-
-    (1 + 1) - ES
 
 Evolution Strategy with (μ+λ) selection implemented in `src/main/scala/core/evolutionStrategy.scala`:
 
