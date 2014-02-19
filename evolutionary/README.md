@@ -194,6 +194,18 @@ Algorithm:
 
     (1 + 1) - ES
 
+Evolution Strategy with (μ+λ) selection implemented in `src/main/scala/core/evolutionStrategy.scala`:
+
+    def search[T](
+      iMutation:    T => T,     // - individual mutation function
+      sMutation:    T => T,     // - strategy mutation function
+      fitness:      T => Double,// - fitness calculation function
+      maxGens:      Int,        // - namber of generations
+      μ:            Int,        // - size of the parent population
+      λ:            Int         // - size of the offspring population
+    ): List[T] => T = ..
+
+
 **Problem:** the travelling salesman problem.
 
 Mutation function:
