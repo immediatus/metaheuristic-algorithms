@@ -10,7 +10,7 @@ object model {
     def show = _.name
   }
 
-  implicit def listShowInstance[T : Show] = new Show[List[T]] {
+  implicit def listShowInstance = new Show[List[City]] {
     def show =
       cities => (cities.head.show /: cities.tail) { case (acc, c) => acc + " -> " + c.show }
   }

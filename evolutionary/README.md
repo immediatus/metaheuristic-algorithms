@@ -120,6 +120,8 @@ Fitness function
     def targetFunction: Double => Double =
         x => 2 * x * x - 3 * x - 4
 
+
+**Domain:**
 algorithm is configured to search for a program with the function set {+, -, *, /}
 
     // Genetic program operators
@@ -206,6 +208,17 @@ Evolution Strategy with (μ+λ) selection implemented in `src/main/scala/core/ev
 
 
 **Problem:** the travelling salesman problem.
+
+
+**Domain:**
+
+    case class City(name : String, latitude : Double, longtitude : Double)
+
+implemented type-classes (from **core**) for City
+
+    Show[City]
+    Show[List[City]]
+
 
 Mutation function:
 
