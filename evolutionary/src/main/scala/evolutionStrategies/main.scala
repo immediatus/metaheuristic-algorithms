@@ -7,48 +7,55 @@ object app {
 
   type Individual = (List[Double], List[City])
 
-  def totalDistance: Individual => Double = {
-    case (_, in) =>
-      in.tail.foldLeft((0.0, in.head)) {
-        case ((dist, a), b) =>
+  def distanceCalculation[T]: List[City] => List[Double] =
+    Memo(individual =>
+      (0.0 :: (individual.tail.foldLeft((List.empty[Double], individual.head)) {
+        case ((acc, a), b) =>
           val (latitude, longtitude) = (b.latitude - a.latitude, b.longtitude - a.longtitude)
-          (dist + Math.sqrt(latitude * latitude + longtitude * longtitude), b)
-      }._1
-  }
+          (Math.sqrt(latitude * latitude + longtitude * longtitude) :: acc, b)
+      }._1))
+    )
 
   def orderMutation[T](
     mutationCount : Int,
-  ): List[Double] => List[T] => List[T] =
-    strategy => individual => {
-      import util.Random._
+    mutationAmount : Int,
+    strategy : List[Double],
+    individual : List[T]
+  ): List[T] = {
+    import util.Random._
 
-      val elements = (individual zip strategy)
-        .sortBy { case (_, st) => st }
-        .map { case (e, _) => e }
-        .take { nextInt(mutationCount + 1) }
+    val elements = (individual zip strategy)
+      .sortBy { case (_, st) => st }
+      .map { case (e, _) => e }
+      .take { nextInt(mutationCount + 1) }
 
-      @annotation.tailrec
-      def mutation0(i : Int, in : List[T]): List[T] =
-        if(i == 0) in
-        else {
-          val fromIndex = nextInt(in.length)
-          val toIndex = (fromIndex + nextInt(mutationAmount)) % in.length
-          mutation0(i - 1, in.swap(fromIndex, toIndex))
-        }
+    @annotation.tailrec
+    def mutation0(e : List[T], in : List[T]): List[T] =
+      e match {
+        case x :: xs =>
+          val fromIndex = in.indexOf(x)
+          val toIndex   = (fromIndex + nextInt(mutationAmount)) % in.length
+          mutation0(xs, in.swap(fromIndex, toIndex))
+        case _      => in
+      }
 
-        mutation0(nextInt(mutationCount + 1), individual)
-    }
-
-  def countAdjustStrategy[T](mutationAmount : Int): Individual => Individual = {
-    case (mutationCount, individual) =>
-      (mutationCount, orderMutation(mutationCount.toInt, mutationAmount) apply individual)
+    mutation0(elements, individual)
   }
 
-  def strategyMutation[T](value : Int): Individual => Individual = {
-    case (stratgy, individual) =>
-      import util.Random._
-      val ta = 1 / (Math.sqrt(2 * Math.sqrt(value)))
-      (stratgy * Math.exp(ta * nextDouble), individual)
+  def totalDistance: Individual => Double = {
+    case (strategy, individual) => distanceCalculation(individual).sum
+  }
+
+  def individualMutation(mutationCount : Int, mutationAmount : Int): Individual => Individual = {
+    case (strategy, individual) => (strategy, orderMutation(mutationCount, mutationAmount, strategy, individual))
+  }
+
+  def strategyMutation: Individual => Individual = {
+    case (strategy, individual) =>
+      import util.Random._, Math._
+      val tau = pow(sqrt(2.0 * strategy.length), -1.0)
+      val tau_p = pow(sqrt(2.0 * sqrt(strategy.length)), -1.0)
+      (distanceCalculation(individual).map { x => x * exp(tau_p * nextDouble + tau * nextDouble) }, individual)
   }
 
   def main(args : Array[String]) {
@@ -56,17 +63,21 @@ object app {
     import core.Show, Show._
     import util.Random._
 
-    val CITY_COUNT  = 20
+    val CITY_COUNT  = 10
     val cities    = europe.take(CITY_COUNT)
 
-    val iMutationF  = countAdjustStrategy(CITY_COUNT)
-    val sMutationF  = strategyMutation(CITY_COUNT)
+    val iMutationF  = individualMutation(5, CITY_COUNT)
+    val sMutationF  = strategyMutation
     val fitnessF    = totalDistance
     val searchF     = evolutionStrategy.search[Individual](iMutationF, sMutationF, fitnessF, 1000, 30, 70)
-    val population  = 100.times { _ => (nextInt(CITY_COUNT / 2).toDouble, shuffle(cities)) }
+    val population  = 200.times { _ =>
+      val individual = shuffle(cities)
+      (distanceCalculation(individual), individual)
+    }
 
     val best @ (_, path) = searchF(population)
-    println(path)
+
+    println(path.show)
     println("distance: " + totalDistance(best))
   }
 }

@@ -93,6 +93,7 @@ where:
 
 Crossover function:
 
+    // One point crossover
     def crossover(rate : => Double): (Individual, Individual) => Individual = ...
 
 
@@ -145,6 +146,11 @@ and
     Navigable[Program[T]]
 
 
+Crossover function:
+
+    // One point crossover
+
+
 Replacement function:
 
     def crossover[T](
@@ -176,14 +182,33 @@ Fitness function:
 
 Algorithm:
 
-    (μ+λ) - ES
+    t := 0;
+    initialize(parent);
+    evaluate(parent);
+    while not terminate(t) do
+      of f spring := mutate(parent);
+      evaluate(of f spring);
+      parent := best(parent, of f spring);
+      t := t + 1;
+    od
+
+    (1 + 1) - ES
 
 **Problem:** the travelling salesman problem.
+
+Mutation function:
+
+    // individual mutation (mutation with strategy)
+    def individualMutation(mutationCount : Int, mutationAmount : Int): Individual => Individual = ...
+
+    // strategy mutation (short distance with Strategy Standard Adoptation)
+    def strategyMutation: Individual => Individual = ...
+
 
 Fitness funtion:
 + measure the total distance of a route in the travelling salesman problem:
 
-
+    def totalDistance: Individual => Double = ...
 
 
 ###Grammatical Evolution
