@@ -7,6 +7,8 @@ Evolutionary Algorithms
 
 + **Populations** - represents a collection of individuals where they may be sorted in a population either in ascending or descending order with respect to their fitness.
 
++ **Genesis** - random creation of an initial pool of binary string genotypes; and random creation of an initial population of individuals.
+
 **Genegic operators:**
 
 + **Selection** - define a strategy of selection which usually base the chance of selection of particular individuals on their fitness values or their rank in the population, respectively.
@@ -19,6 +21,7 @@ Evolutionary Algorithms
    * Proportional Selection
    * Ranking Selection
    * Tournament Selection
+   * Steady-State Selection
 
 where:
    **μ** - size of the parent population;
@@ -44,6 +47,18 @@ where:
 
    * Standard adaptation
    * Rotation matrix adaptation
+
+
+Genetic Programming (GP) is an evolutionary technique used for breeding a population of computer programs. GP individuals are represented and manipulated as nonlinear entities, usually trees. A particular GP subdomain consists of evolving mathematical expressions. In that case the evolved program is a mathematical expression, program execution means evaluating that expression, and the output of the program is usually the value of the expression.
+
+Linear variants of GP:
+* Multi-Expression Programming (MEP);
+* Grammatical Evolution (GE);
+* Gene Expression Programming (GEP) [7];
+* Linear Genetic Programming (LGP);
+* Cartesian Genetic Programming (CGP);
+* Genetic Algorithm for Deriving Software (GADS).
+
 
 
 ###Genetic Algorithm
@@ -225,7 +240,7 @@ Mutation function:
     // individual mutation (mutation with strategy)
     def individualMutation(mutationCount : Int, mutationAmount : Int): Individual => Individual = ...
 
-    // strategy mutation (short distance with Strategy Standard Adoptation)
+    // strategy mutation (a,b distance with Strategy Standard Adoptation)
     def strategyMutation: Individual => Individual = ...
 
 
@@ -236,8 +251,48 @@ Fitness funtion:
 
 
 ###Grammatical Evolution
++ Details: [wiki](http://en.wikipedia.org/wiki/Grammatical_evolution "wikipedia")
 + Sources: `src/main/scala/gramaticalEvolution`
 + **Run:** `sbt 'evolutionary/run-main ua.org.scala.gramaticalEvolution.app'`
+
+**Mapper** - is responsible for the mapping of genotype to phenotype. Any specific mapping process can be implemented and executed by the EA strategy.
+
+Language definition:
++ Backus Naur Form
++ BNF Grammar consists of the tuple < T,N,P,S > where
+  - T is Terminals set
+  - N is Non-Terminals set
+  - S is Start Symbol (a member of N)
+  - P is Production Rules set
+
++ Example:
+
+    T = {Sin, Cos, Tan, Log, +, −, /, ∗, X , (, )}
+    N = {expr , op, pre_op}
+    S = < expr >
+    P =
+        (1) <expr> ::=  <expr> <op> <expr> (A)
+                      | ( <expr> <op> <expr> ) (B)
+                      | <pre-op> ( <expr> ) (C)
+                      | <var> (D)
+
+        (2) <op> ::=    + (A)
+                      | - (B)
+                      | / (C)
+                      | * (D)
+
+        (3) <pre-op>::= Sin (A)
+                      | Cos (B)
+                      | Tan (C)
+
+        (4) <var> ::=   X (A)
+
+
+And a Genetic Algorithm is used to control choice of production rule.
+
+Grammatical Evolution based on a steady-state algorithm:
+
+
 
 
 ###Gene Expression Programming
