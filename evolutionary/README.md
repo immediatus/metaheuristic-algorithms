@@ -268,24 +268,22 @@ Language definition:
   - **P** is Production Rules set
 + Current problem language:
 
+<![CDATA[
     T = {turn_left, turn_right, move, if, else, food_ahead, {,} }
-  
     N = {<code>|<expr>, <line>, <condition>, <op>}
-    
     S = <code>|<expr>
-    
     P =
-    // BNF-ONeill
-    (1) <code>        :: = <line> | <code><line>
-    (2) <line>        :: = <condition> | <op>
-    (3) <condition>   :: = if food_ahead { <line> } else { <line> }
-    (4) <op>          :: = turn_left | turn_right | move
+         // BNF-ONeill
+         (1) <code>        :: = <line> | <code><line>
+         (2) <line>        :: = <condition> | <op>
+         (3) <condition>   :: = if food_ahead { <line> } else { <line> }
+         (4) <op>          :: = turn_left | turn_right | move
 
-    // BNF-Koza
-    (1) <expr>        :: = <line> | <expr><line>
-    (2) <line>        :: = if food_ahead { <expr> } else { <expr> } | <op>
-    (3) <op>          :: = turn_left | turn_right | move
-
+         // BNF-Koza
+         (1) <expr>        :: = <line> | <expr><line>
+         (2) <line>        :: = if food_ahead { <expr> } else { <expr> } | <op>
+         (3) <op>          :: = turn_left | turn_right | move
+]]>
 
 **Evolutionary Algorithm:**
 Steady-State GA, Generation Gap: 0.9,
