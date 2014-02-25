@@ -270,11 +270,11 @@ Language definition:
 
     ```
     T = {turn_left, turn_right, move, if, else, food_ahead, {,} }
-    N = {<_code_>|<expr>, <line>, <condition>, <op>}
-    S = <_code_>|<expr>
+    N = {<code>|<expr>, <line>, <condition>, <op>}
+    S = <code>|<expr>
     P =
       // BNF-ONeill
-      (1) <_code_>        :: = <line> | <_code_><line>
+      (1) <code>        :: = <line> | <code><line>
       (2) <line>        :: = <condition> | <op>
       (3) <condition>   :: = if food_ahead { <line> } else { <line> }
       (4) <op>          :: = turn_left | turn_right | move
