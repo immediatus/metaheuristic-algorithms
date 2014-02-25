@@ -267,11 +267,11 @@ Language definition:
   - **S** is Start Symbol (a member of N)
   - **P** is Production Rules set
 + Current problem language:
-
-    - T = {turn_left, turn_right, move, if, else, food_ahead, {,} }
-    - N = {<code>|<expr>, <line>, <condition>, <op>}
-    - S = <code>|<expr>
-    - P =
+<code>
+    T = {turn_left, turn_right, move, if, else, food_ahead, {,} }
+    N = {<code>|<expr>, <line>, <condition>, <op>}
+    S = <code>|<expr>
+    P =
          // BNF-ONeill
          (1) <code>        :: = <line> | <code><line>
          (2) <line>        :: = <condition> | <op>
@@ -282,7 +282,7 @@ Language definition:
          (1) <expr>        :: = <line> | <expr><line>
          (2) <line>        :: = if food_ahead { <expr> } else { <expr> } | <op>
          (3) <op>          :: = turn_left | turn_right | move
-
+</code>
 
 **Evolutionary Algorithm:**
 Steady-State GA, Generation Gap: 0.9,
