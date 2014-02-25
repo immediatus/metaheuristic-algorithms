@@ -262,17 +262,16 @@ Fitness funtion:
 Language definition:
 + Backus Naur Form
 + BNF Grammar consists of the tuple < T,N,P,S > where
-  - T is Terminals set
-  - N is Non-Terminals set
-  - S is Start Symbol (a member of N)
-  - P is Production Rules set
-
+  - **T** is Terminals set
+  - **N** is Non-Terminals set
+  - **S** is Start Symbol (a member of N)
+  - **P** is Production Rules set
 + Current problem language:
 
-    `T = {turn_left, turn_right, move, if, else, food_ahead, {,} }
-    N = {<code>|<expr>, <line>, <condition>, <op>}
-    S = <code>|<expr>
-    P =
+    - T = {turn_left, turn_right, move, if, else, food_ahead, {,} }
+    - N = {<code>|<expr>, <line>, <condition>, <op>}
+    - S = <code>|<expr>
+    - P =
          // BNF-ONeill
          (1) <code>        :: = <line> | <code><line>
          (2) <line>        :: = <condition> | <op>
@@ -282,7 +281,7 @@ Language definition:
          // BNF-Koza
          (1) <expr>        :: = <line> | <expr><line>
          (2) <line>        :: = if food_ahead { <expr> } else { <expr> } | <op>
-         (3) <op>          :: = turn_left | turn_right | move`
+         (3) <op>          :: = turn_left | turn_right | move
 
 
 **Evolutionary Algorithm:**
