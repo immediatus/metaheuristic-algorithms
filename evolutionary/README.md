@@ -269,7 +269,7 @@ Language definition:
 
 + Current problem language:
 
-    T = {turn_left, turn_right, move, if, else, food_ahead, {,} }
+    `T = {turn_left, turn_right, move, if, else, food_ahead, {,} }
     N = {<code>|<expr>, <line>, <condition>, <op>}
     S = <code>|<expr>
     P =
@@ -282,7 +282,7 @@ Language definition:
          // BNF-Koza
          (1) <expr>        :: = <line> | <expr><line>
          (2) <line>        :: = if food_ahead { <expr> } else { <expr> } | <op>
-         (3) <op>          :: = turn_left | turn_right | move
+         (3) <op>          :: = turn_left | turn_right | move`
 
 
 **Evolutionary Algorithm:**
