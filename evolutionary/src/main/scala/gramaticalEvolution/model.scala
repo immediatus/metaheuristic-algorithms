@@ -9,20 +9,17 @@ object model {
   case class Trail(foods : List[Food])
   case class Ant(x: Int, y : Int)
 
-  trait Code
+  trait Expr
+  case object EOE extends Expr
 
-  case class Line(next : Code) extends Code
-  case object EOC extends Code
+  abstract class Op(next : Expr) extends Expr
+  case class Left(next : Expr) extends Op(next)
+  case class Right(next : Expr) extends Op(next)
+  case class Move(next : Expr) extends Op(next)
 
-  case class Op(next : Code) extends Line(next)
-  case class Left(next : Code) extends Op(next)
-  case class Right(next : Code) extends Op(next)
-  case class Move(next : Code) extends Op(next)
+  case class IfFoodAhead(trueNext : Expr, falseNext : Expr) extends Expr
 
-  case class IfElse(trueBranch : Code, falseBrunch : Code) extends Code
-
-
-  class Interpreter(program : Program) {
+  class Interpreter(expression : Expr) {
   }
 }
 
