@@ -117,7 +117,7 @@ Mutation function:
     def mutation(rate : => Double): Individual => Individual = ...
 
 
-Fitness function
+Fitness function:
 
     def oneMin(value: Double): Individual => Double = ..
 
@@ -222,7 +222,7 @@ Evolution Strategy with (μ+λ) selection implemented in `src/main/scala/core/ev
     ): List[T] => T = ..
 
 
-**Problem:** the travelling salesman problem.
+**Problem:** [Travelling Salesman](http://en.wikipedia.org/wiki/Travelling_salesman_problem)
 
 
 **Domain:**
@@ -255,6 +255,8 @@ Fitness funtion:
 + Sources: `src/main/scala/gramaticalEvolution`
 + **Run:** `sbt 'evolutionary/run-main ua.org.scala.gramaticalEvolution.app'`
 
+**Problem:** [Santa Fe Trail](http://en.wikipedia.org/wiki/Santa_Fe_Trail_problem)
+
 **Mapper** - is responsible for the mapping of genotype to phenotype. Any specific mapping process can be implemented and executed by the EA strategy.
 
 Language definition:
@@ -265,32 +267,38 @@ Language definition:
   - S is Start Symbol (a member of N)
   - P is Production Rules set
 
-+ Example:
++ Current problem language:
 
-    T = {Sin, Cos, Tan, Log, +, −, /, ∗, X , (, )}
-    N = {expr , op, pre_op}
-    S = < expr >
+    T = {turn_left, turn_right, move, if, else, food_ahead, {,} }
+    N = {<code>|<expr>, <line>, <condition>, <op>}
+    S = <code>|<expr>
     P =
-        (1) <expr> ::=  <expr> <op> <expr> (A)
-                      | ( <expr> <op> <expr> ) (B)
-                      | <pre-op> ( <expr> ) (C)
-                      | <var> (D)
+         // BNF-ONeill
+         (1) <code>        :: = <line> | <code><line>
+         (2) <line>        :: = <condition> | <op>
+         (3) <condition>   :: = if food_ahead { <line> } else { <line> }
+         (4) <op>          :: = turn_left | turn_right | move
 
-        (2) <op> ::=    + (A)
-                      | - (B)
-                      | / (C)
-                      | * (D)
-
-        (3) <pre-op>::= Sin (A)
-                      | Cos (B)
-                      | Tan (C)
-
-        (4) <var> ::=   X (A)
+         // BNF-Koza
+         (1) <expr>        :: = <line> | <expr><line>
+         (2) <line>        :: = if food_ahead { <expr> } else { <expr> } | <op>
+         (3) <op>          :: = turn_left | turn_right | move
 
 
-And a Genetic Algorithm is used to control choice of production rule.
+**Evolutionary Algorithm:**
+Steady-State GA, Generation Gap: 0.9,
+Selection Mechanism: Roulette-Wheel
 
-Grammatical Evolution based on a steady-state algorithm:
+**Initial Population:**
+Randomly created with the following restrictions: Minimum Codons: 15 and Maximum Codons: 25
+
+**Parameters:**
+Population Size: 500, Maximum Generations: 50 (without counting generation 0), Prob. Mutation: 0.01, Prob. Crossover: 0.9, Codon Size: 8, Wraps Limit: 10
+
+
+Fitness function:
+
+    // f(x) = 89 - x : where the value 89 means the number of the foods before the simulation starts
 
 
 

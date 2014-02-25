@@ -63,10 +63,10 @@ object app {
     import core.Show, Show._
     import util.Random._
 
-    val CITY_COUNT  = 10
+    val CITY_COUNT  = 30
     val cities    = europe.take(CITY_COUNT)
 
-    val iMutationF  = individualMutation(5, CITY_COUNT)
+    val iMutationF  = individualMutation(5, CITY_COUNT / 2)
     val sMutationF  = strategyMutation
     val fitnessF    = totalDistance
     val searchF     = evolutionStrategy.search[Individual](iMutationF, sMutationF, fitnessF, 1000, 30, 70)
