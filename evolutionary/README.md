@@ -268,7 +268,8 @@ Language definition:
   - **P** is Production Rules set
 + Current problem language:
 
-    ```T = {turn_left, turn_right, move, if, else, food_ahead, {,} }
+    ```
+    T = {turn_left, turn_right, move, if, else, food_ahead, {,} }
     N = {<_code_>|<expr>, <line>, <condition>, <op>}
     S = <_code_>|<expr>
     P =
