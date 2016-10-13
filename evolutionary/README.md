@@ -284,6 +284,7 @@ Language definition:
       (2) <line>        :: = if food_ahead { <expr> } else { <expr> } | <op>
       (3) <op>          :: = turn_left | turn_right | move```
 
+
 **Evolutionary Algorithm:**
 Steady-State GA, Generation Gap: 0.9,
 Selection Mechanism: Roulette-Wheel
