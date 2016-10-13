@@ -301,7 +301,6 @@ Fitness function:
 
 
 
-
 ###Gene Expression Programming
 + Details: [wiki](http://en.wikipedia.org/wiki/Gene_expression_programming "wikipedia")
 + Sources: `src/main/scala/geneExpressionProgramming`
